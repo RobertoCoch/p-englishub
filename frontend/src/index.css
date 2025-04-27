@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: League Spartan;
+    src: url("./assets/fonts/LeagueSpartan-VariableFont_wght.ttf");
+}
+
+@theme {
+    --font-spartan: League Spartan, "sans-serif"; 
+}
+
+.login {
+    @apply bg-[#0B1138] w-screen h-screen font-spartan
+    
+    md:flex md:items-center md:flex-col
+    ;
+}
+
+.head-form {
+    @apply w-screen h-1/4 p-5 flex justify-center items-center
+    
+    md:text-center md:w-screen
+    ;
+}
+
+.tittle-form {
+    @apply font-extrabold text-white text-6xl ;
+}
+
+.form-style {
+    @apply flex flex-col items-center gap-6 rounded-t-[15vw] h-screen pt-15 bg-white
+    
+    md:rounded-t-[5vw]
+    ;
+}
+
+.container-form {
+    @apply w-screen h-3/4 fixed bottom-0 rounded-t-[15vw]
+    
+    md:w-1/2 md:rounded-t-[5vw]
+    ;
+}
+
+.text-alumno {
+    @apply text-4xl font-extrabold text-[#162474]
+}
+
+.button-form {
+    @apply mt-5 bg-[#162474] w-3/4 h-15 rounded-4xl text-center text-white transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-[#3E55DA]
+    
+    md:w-2/5
+    ;
+}
+
+.input-form {
+    @apply bg-[#F4F4F4] w-3/4 h-15 rounded-4xl text-center
+    
+    md:w-2/5
+    ;
+}
