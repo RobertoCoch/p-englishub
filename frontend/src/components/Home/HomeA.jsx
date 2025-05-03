@@ -1,5 +1,7 @@
+import { Calificaciones } from "./Calificaciones"
+
 export const HomeA = () => {
   return (
-    <div>Has sido Logeado</div>
+    <Calificaciones></Calificaciones>
   )
 }
