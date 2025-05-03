@@ -1,5 +1,7 @@
 import { LoginA } from '../Login/LoginA';
 import { HomeA } from '../Home/HomeA';
+import { Navbar } from '../Layout/Navbar';
+
 
 function parseJwt (token) {
         const base64Url = token.split('.')[1];
@@ -23,10 +25,17 @@ if (token) {
   }
 }
 
+
+
+
 export const Main = () => {
   return (
     <>
+    <Navbar></Navbar>
+    {/* 
     {tokenExistAndStillValid ? <HomeA /> : <LoginA />}
+    </>
+    */}
     </>
   )
 }
