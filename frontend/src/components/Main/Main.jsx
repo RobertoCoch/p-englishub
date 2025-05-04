@@ -1,6 +1,7 @@
 import { LoginA } from '../Login/LoginA';
 import { HomeA } from '../Home/HomeA';
 import { Navbar } from '../Layout/Navbar';
+import { Tareas } from '../Home/Tareas';
 
 
 function parseJwt (token) {
@@ -31,7 +32,7 @@ if (token) {
 export const Main = () => {
   return (
     <>
-    <Navbar></Navbar>
+    <Tareas></Tareas>
     {/* 
     {tokenExistAndStillValid ? <HomeA /> : <LoginA />}
     </>
