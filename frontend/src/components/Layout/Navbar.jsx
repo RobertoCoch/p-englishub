@@ -6,7 +6,7 @@ import SingOut from '../../assets/images/sign-out.png'
 
 export const Navbar = () => {
   return (
-    <nav className='p-5 sm:p-0 font-spartan lg:w-10/10 w-screen bg-[#0B1138] h-15 flex justify-around items-center md:justify-between'>
+    <nav className='p-5 md:p-0 font-spartan lg:w-10/10 w-screen bg-[#0B1138] h-15 flex justify-around items-center md:justify-between'>
          <div className='flex items-center gap-3 md:ml-10'>
           <button title='Menu' className='md:hidden w-10 h-10 rounded-md text-white hover:bg-[#162474]'>
             <img src={SideBar} alt="" className='w-9 h-9 ml-0.5'/>

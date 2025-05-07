@@ -1,7 +1,9 @@
 import { LoginA } from '../Login/LoginA';
 import { HomeA } from '../Home/HomeA';
-import { Navbar } from '../Layout/Navbar';
-import { Tareas } from '../Home/Tareas';
+import { Calificaciones } from '../Home/Calificaciones';
+import { AppRouter } from '../../router/AppRouter';
+
+
 
 
 function parseJwt (token) {
@@ -32,11 +34,10 @@ if (token) {
 export const Main = () => {
   return (
     <>
-    <Tareas></Tareas>
-    {/* 
+    <AppRouter></AppRouter>
+     {/* 
     {tokenExistAndStillValid ? <HomeA /> : <LoginA />}
-    </>
-    */}
+     */}
     </>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import { BookCheck, Upload, Megaphone, ChartBarBig } from 'lucide-react'
 
 export const Sidebar = () => {
@@ -7,21 +7,24 @@ export const Sidebar = () => {
         <div className='flex flex-col items-start p-4 gap-5' >
         
             <h2 className='font-extrabold text-4xl'>Englishub</h2>
-            <button className=' flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'> 
-            <ChartBarBig className='w-6 h-6 mr-3'/>
-            Calificaciones
-            </button>
+              <Link to='/' className='w-full'>
+                <button className=' flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'> 
+                <ChartBarBig className='w-6 h-6 mr-3'/>
+                Calificaciones
+                </button>
+              </Link>
+              
+              <Link to='/tareas' className='w-full'>
+                <button className='flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'>
+                <BookCheck className='w-6 h-6 mr-3'/>
+                Tareas
+                </button>
+              </Link>
 
-            <button className='flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'>
-            <BookCheck className='w-6 h-6 mr-3'/>
-            Tareas
-            </button>
-
-
-            <button className='flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'>
-            <Upload className='w-6 h-6 mr-3'/>
-            Entrega de tareas
-            </button>
+              <button className='flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'>
+              <Upload className='w-6 h-6 mr-3'/>
+              Entrega de tareas
+              </button>
 
             <button className='flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'>
             <Megaphone className='w-6 h-6 mr-3'/>
