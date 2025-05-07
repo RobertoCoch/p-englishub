@@ -33,11 +33,8 @@ if (token) {
 
 export const Main = () => {
   return (
-    <>
-    <AppRouter></AppRouter>
-     {/* 
-    {tokenExistAndStillValid ? <HomeA /> : <LoginA />}
-     */}
+    <> 
+    {tokenExistAndStillValid ? <AppRouter /> : <LoginA />}
     </>
   )
 }
