@@ -34,7 +34,10 @@ if (token) {
 export const Main = () => {
   return (
     <> 
+    <AppRouter></AppRouter>
+    {/*
     {tokenExistAndStillValid ? <AppRouter /> : <LoginA />}
+    */}
     </>
   )
 }

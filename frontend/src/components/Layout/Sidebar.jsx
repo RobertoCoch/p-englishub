@@ -27,11 +27,13 @@ export const Sidebar = () => {
                 Entrega de tareas
                 </button>
               </Link>
-
-            <button className='flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'>
-            <Megaphone className='w-6 h-6 mr-3'/>
-            Avisos
-            </button>
+              
+              <Link to='/avisos' className='w-full'>
+                <button className='flex text-xl hover:bg-[#DAC33E] hover:text-black w-full text-start p-2 rounded-sm'>
+                <Megaphone className='w-6 h-6 mr-3'/>
+                Avisos
+                </button>
+              </Link>
         </div>
     </aside>
   )

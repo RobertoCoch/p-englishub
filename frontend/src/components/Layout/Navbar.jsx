@@ -11,7 +11,9 @@ export const Navbar = () => {
           <button title='Menu' className='md:hidden w-10 h-10 rounded-md text-white hover:bg-[#162474]'>
             <img src={SideBar} alt="" className='w-9 h-9 ml-0.5'/>
           </button>
-          <p className='text-white font-extrabold'>English Hub</p>
+          <p className='text-white font-extrabold text-lg'>English Hub</p>
+          <span className="text-white hidden md:inline">|</span>
+          <span className="truncate text-white hidden md:inline">Portal del Alumno</span>
         </div>
         <div className='flex gap-3 md:mr-10'>
           <button title='Perfil' className='flex items-center w-auto h-10 bg-[#162474] rounded-md text-white hover:bg-[#3E55DA]'>
