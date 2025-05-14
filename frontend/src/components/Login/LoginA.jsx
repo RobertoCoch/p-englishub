@@ -58,6 +58,11 @@ export const LoginA = () => {
               )}
               <input placeholder='Matricula *' onChange={(event) => {setMatricula(event.target.value)}} className='input-form' type="text" />
               <input placeholder='Contraseña *' onChange={(event) => {setContraseña(event.target.value)}} className='input-form' type="password" />
+              <div className='10/10 flex flex-row gap-5'>
+                <button className=' text-white w-20 h-10 bg-[#0B1138] rounded-lg hover:bg-[#3E55DA]'>Alumno</button>
+                <button className=' text-white w-20 h-10 bg-[#0B1138] rounded-lg hover:bg-[#3E55DA]'>Maestro</button>
+                <button className=' text-white w-20 h-10 bg-[#0B1138] rounded-lg hover:bg-[#3E55DA]'>Admin</button>
+              </div>
               <button onClick={handdleLogin} className='button-form'>Iniciar Sesión</button>
           </form>      
       </div>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Navbar } from '../Layout/Navbar'
 import { Sidebar } from '../Layout/Sidebar';
 import { ProgressBar } from '../Layout/ProgressBar'

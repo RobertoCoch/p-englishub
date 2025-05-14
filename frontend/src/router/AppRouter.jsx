@@ -3,6 +3,7 @@ import { Calificaciones } from '../components/Home/Calificaciones'
 import { Tareas } from '../components/Home/Tareas'
 import { SubirTareas } from '../components/Home/SubirTareas'
 import { Avisos } from '../components/Home/Avisos'
+import { LoginA } from '../components/Login/LoginA'
 
 export const AppRouter = () => {
   return (
@@ -11,6 +12,7 @@ export const AppRouter = () => {
         <Route path='/tareas' element={<Tareas/>}/>
         <Route path='/subirtareas' element={<SubirTareas/>}/>
         <Route path='/avisos' element={<Avisos/>}/>
+        <Route path='/logina' element={<LoginA/>}/>
     </Routes>
   )
 }
