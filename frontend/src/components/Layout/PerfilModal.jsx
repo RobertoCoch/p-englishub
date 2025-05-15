@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 
+{/* 
 const studentData = {
   nombre: "José Roberto Contreras Chablé",
   matricula: "22E30381",
@@ -9,9 +11,27 @@ const studentData = {
   correo: "contreraschableroberto@gmail.com",
   foto: "https://i.pravatar.cc/150?img=33" // Usamos una imagen de perfil de ejemplo
 };
+*/}
+
+const foto = "https://cdn-icons-png.flaticon.com/512/9706/9706583.png"
 
 export const PerfilModal = ({ isOpen, setIsOpen }) => {
-      if (!isOpen) return null;
+      const [studentData, setStudentData] = useState(null);
+
+      const matricula = localStorage.getItem("matricula");
+
+      useEffect(() => {
+        if (isOpen && matricula) {
+          fetch(`http://localhost:3000/perfil/${matricula}`)
+            .then(res => res.json())
+            .then(data => setStudentData(data))
+            .catch(err => {
+              console.error("Error al obtener perfil:", err);
+            });
+        }
+      }, [isOpen, matricula]);
+
+      if (!isOpen || !studentData) return null;
   return (
     <>
                 {/* Overlay/Backdrop con animación */}
@@ -43,7 +63,7 @@ export const PerfilModal = ({ isOpen, setIsOpen }) => {
               {/* Foto de perfil */}
               <div className="flex-shrink-0">
                 <img 
-                  src={studentData.foto} 
+                  src={foto} 
                   alt="Foto de perfil" 
                   className="w-32 h-32 rounded-full object-cover border-4 border-[#162474]"
                 />
@@ -53,7 +73,7 @@ export const PerfilModal = ({ isOpen, setIsOpen }) => {
               <div className="flex-grow space-y-3">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800">{studentData.nombre}</h3>
-                  <p className="text-[#3E55DA] font-medium">{studentData.carrera}</p>
+                  <p className="text-[#3E55DA] font-medium">Ingeniería {studentData.carrera}</p>
                 </div>
                 
                 {/* Detalles del estudiante */}

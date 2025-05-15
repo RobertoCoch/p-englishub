@@ -1,8 +1,5 @@
 import { LoginA } from '../Login/LoginA';
-import { HomeA } from '../Home/HomeA';
-import { Calificaciones } from '../Home/Calificaciones';
 import { AppRouter } from '../../router/AppRouter';
-
 
 
 
@@ -33,12 +30,8 @@ if (token) {
 
 export const Main = () => {
   return (
-    <> 
-   
-    <AppRouter></AppRouter>
-     {/* 
-    {tokenExistAndStillValid ? <AppRouter /> : <LoginA />}
-     */}
-    </>
+     <>
+       {tokenExistAndStillValid ? <AppRouter /> : <LoginA />}
+     </>
   )
 }

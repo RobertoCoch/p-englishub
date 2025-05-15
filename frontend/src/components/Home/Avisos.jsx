@@ -1,6 +1,3 @@
-import React from 'react'
-import { Sidebar } from '../Layout/Sidebar'
-import { Navbar } from '../Layout/Navbar'
 
 const mockAvisos = [
     { id: 1, title: "Upcoming Test", dueDate: "2025-05-10", message: "Remember we have a vocabulary test next Tuesday, May 12th. Study chapters 7-9." },
@@ -10,27 +7,21 @@ const mockAvisos = [
 
 export const Avisos = () => {
   return (
-    <div className='w-screen h-screen flex font-spartan'>
-        <Sidebar></Sidebar>
-        <div className='flex flex-col lg:w-8/10 w-screen'>
-            <Navbar></Navbar>
-            <div className='flex flex-col gap-1 items-center md:items-baseline'>
-                <h2 className='font-bold text-3xl w-8/10 pt-10 md:pl-15'> Avisos</h2>
-                <div className='flex flex-col gap-8 p-10'> 
-                    {mockAvisos.map((avisos, i) => (
-                        <div key={avisos.id} className="p-4 hover:bg-gray-50 bg-card text-card-foreground shadow-sm rounded-lg border-l-[#DAC33E]">
-                            <div className="flex justify-between items-center">
-                                    <div>
-                                        <h3 className="font-bold text-2xl text-[#3E55DA]">{avisos.title}</h3>
-                                        <p className="text-sm text-gray-500">Publicado: {avisos.dueDate}</p>
-                                        <p className="text-lg text-gray-500">{avisos.message}</p>
-                                    </div>
+    <div className='flex flex-col gap-1 items-center md:items-baseline'>
+        <h2 className='font-bold text-3xl w-8/10 pt-10 md:pl-15'> Avisos</h2>
+        <div className='flex flex-col gap-8 p-10'> 
+            {mockAvisos.map((avisos, i) => (
+                <div key={avisos.id} className="p-4 hover:bg-gray-50 bg-card text-card-foreground shadow-sm rounded-lg border-l-[#DAC33E]">
+                    <div className="flex justify-between items-center">
+                            <div>
+                                <h3 className="font-bold text-2xl text-[#3E55DA]">{avisos.title}</h3>
+                                <p className="text-sm text-gray-500">Publicado: {avisos.dueDate}</p>
+                                <p className="text-lg text-gray-500">{avisos.message}</p>
                             </div>
-                        </div>
-                    ))
-                    }
+                    </div>
                 </div>
-            </div>
+            ))
+            }
         </div>
     </div>
   )

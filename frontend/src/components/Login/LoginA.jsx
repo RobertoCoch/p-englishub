@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import { HomeA } from '../Home/HomeA';
 
 export const LoginA = () => {
-
   const [matricula, setMatricula] = useState('');
   const [contraseña, setContraseña] = useState('');
-  const [loginSuccesful, setLoginSuccesful] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handdleLogin = (e) => {
@@ -28,10 +25,10 @@ export const LoginA = () => {
       .then(response => response.json())
       .then(result => {
         if (result.token) {
-          localStorage.setItem('token', result.token)
-          setLoginSuccesful(true);
+            localStorage.setItem('token', result.token);
+            localStorage.setItem('matricula', matricula);
+             window.location.href = '/';
         }else {
-          setLoginSuccesful(false);
           setErrorMessage('Usuario o contraseña incorrectos');
         }
       })
@@ -42,7 +39,7 @@ export const LoginA = () => {
 
   }
   return (
-    <>{loginSuccesful ? <HomeA /> : 
+    <>
     <div className='login'>
       <div className='head-form'>
         {/*<button><img className="w-10 h-10" src="/src/assets/images/backreturn.png" alt="" /></button>*/}
@@ -67,7 +64,7 @@ export const LoginA = () => {
           </form>      
       </div>
       
-    </div>}</>
+    </div></>
     
   )
 }

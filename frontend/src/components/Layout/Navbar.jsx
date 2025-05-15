@@ -12,6 +12,12 @@ export const Navbar = () => {
   const [mostrar, setMostrar] = useState(true)
   const [mostrarPerfil, setMostrarPerfil] = useState(false)
   const [mostrarConfig, setMostrarConfig] = useState(false)
+
+  const handleLogout = () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('matricula');
+      window.location.reload();
+  }
   return (
     <>
     <nav className='p-5 md:p-0 font-spartan lg:w-10/10 w-screen bg-[#0B1138] h-15 flex justify-around items-center md:justify-between'>
@@ -34,7 +40,7 @@ export const Navbar = () => {
             <img src={Settings} alt=""  className='w-8 h-8 ml-1'/>
             <p className='text-lg pt-2 pr-3 pl-1 hidden sm:inline'>Configuración</p>
           </button>
-          <button title='Cerrar Sesión' className='flex items-center w-auto h-10 bg-[#162474] rounded-md text-white hover:bg-[#3E55DA]'>
+          <button onClick={handleLogout} title='Cerrar Sesión' className='flex items-center w-auto h-10 bg-[#162474] rounded-md text-white hover:bg-[#3E55DA]'>
             <img src={SingOut} alt="" className='w-11 h-11'/>
             <p className='text-lg pt-2 pr-3 hidden sm:inline'>Salir</p>
           </button>
