@@ -26,4 +26,24 @@ const obtenerPerfil = (req, res) => {
 }
 
 
-module.exports = { obtenerPerfil };
+const cambiarContrasena = async (req, res) => {
+  const { matricula, contrasenaActual, nuevaContrasena } = req.body;
+
+  try {
+    const [rows] = await conexion.query('SELECT contraseña FROM logina WHERE matricula = ?', [matricula]);
+    if (rows.length === 0) return res.status(404).json({ error: 'Matricula no encontrada' });
+
+    const alumno = rows[0];
+    if (alumno.password !== contrasenaActual) {
+      return res.status(401).json({ error: 'Contraseña actual incorrecta' });
+    }
+
+    await conexion.query('UPDATE logina SET contraseña = ? WHERE matricula = ?', [nuevaContrasena, matricula]);
+    res.json({ mensaje: 'Contraseña actualizada correctamente' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al cambiar la contraseña' });
+  }
+};
+
+
+module.exports = { obtenerPerfil, cambiarContrasena };

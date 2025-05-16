@@ -2,7 +2,56 @@ import { X, Lock, Mail, BellRing } from "lucide-react";
 import { useState } from "react";
 
 export const Configuracion = ({mostrarConfig, setMostrarConfig}) => {
+    const [contrasenaActual, setContrasenaActual] = useState("");
+    const [nuevaContrasena, setNuevaContrasena] = useState("");
+    const [confirmarContrasena, setConfirmarContrasena] = useState("");
     const [activeSection, setActiveSection] = useState("password");
+
+      const handleGuardarContrasena = async () => {
+    if (!contrasenaActual || !nuevaContrasena || !confirmarContrasena) {
+      alert("Completa todos los campos");
+      return;
+    }
+
+    if (nuevaContrasena !== confirmarContrasena) {
+      alert("Las nuevas contraseñas no coinciden");
+      return;
+    }
+
+    try {
+      const matricula = localStorage.getItem("matricula"); // o donde estés guardando la sesión
+
+      const res = await fetch("http://localhost:3000/cambiar-contrasena", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          matricula,
+          contrasenaActual,
+          nuevaContrasena,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Contraseña actualizada con éxito");
+        setContrasenaActual("");
+        setNuevaContrasena("");
+        setConfirmarContrasena("");
+      } else {
+        alert(data.mensaje || "Error al cambiar la contraseña");
+      }
+    } catch (error) {
+      console.error("Error al cambiar contraseña:", error);
+      alert("Hubo un error. Intenta más tarde.");
+    }
+  };
+
+
+
+
     if (!mostrarConfig) return null;
 
     const renderContent = () => {
@@ -14,17 +63,17 @@ export const Configuracion = ({mostrarConfig, setMostrarConfig}) => {
                 <div className="space-y-4">
                 <div>
                     <label className="block text-sm font-medium mb-1">Contraseña actual</label>
-                    <input type="password" className="w-full p-2 border rounded" placeholder="••••••••" />
+                    <input type="password" className="w-full p-2 border rounded" placeholder="••••••••" value={contrasenaActual} onChange={(e) => setContrasenaActual(e.target.value)}/>
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1">Nueva contraseña</label>
-                    <input type="password" className="w-full p-2 border rounded" placeholder="••••••••" />
+                    <input type="password" className="w-full p-2 border rounded" placeholder="••••••••" value={nuevaContrasena} onChange={(e) => setNuevaContrasena(e.target.value)} />
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1">Confirmar contraseña</label>
-                    <input type="password" className="w-full p-2 border rounded" placeholder="••••••••" />
+                    <input type="password" className="w-full p-2 border rounded" placeholder="••••••••"  value={confirmarContrasena} onChange={(e) => setConfirmarContrasena(e.target.value)}/>
                 </div>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">Guardar cambios</button>
+                <button onClick={handleGuardarContrasena} className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">Guardar cambios</button>
                 </div>
             </div>
             );
