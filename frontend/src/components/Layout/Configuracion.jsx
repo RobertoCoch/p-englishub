@@ -1,13 +1,44 @@
 import { X, Lock, Mail, BellRing } from "lucide-react";
 import { useState } from "react";
+import { actualizarContrasena } from "../Services/actualizarContrasena";
+import { actualizarCorreo } from "../Services/actualizarCorreo";
+
 
 export const Configuracion = ({mostrarConfig, setMostrarConfig}) => {
+    const [correoActual, setCorreoActual] = useState("");
+    const [nuevoCorreo, setNuevoCorreo] = useState("");
+    const [contrasena, setContrasena] = useState("");
     const [contrasenaActual, setContrasenaActual] = useState("");
     const [nuevaContrasena, setNuevaContrasena] = useState("");
     const [confirmarContrasena, setConfirmarContrasena] = useState("");
     const [activeSection, setActiveSection] = useState("password");
 
-      const handleGuardarContrasena = async () => {
+    const handleGuardarCorreo = async () => {
+      if (!nuevoCorreo || !contrasena) {
+        alert("Completa todos los campos");
+        return;
+      }
+
+      try {
+        const matricula = localStorage.getItem("matricula");
+
+        const { ok, data } = await actualizarCorreo({ matricula, nuevoCorreo, contrasena });
+
+        if (ok) {
+          alert("Correo actualizado con éxito");
+          setCorreoActual(nuevoCorreo);
+          setNuevoCorreo("");
+          setContrasena("");
+        } else {
+          alert(data.mensaje || "Error al cambiar el correo");
+        }
+      } catch (error) {
+        console.error("Error al cambiar correo:", error);
+        alert("Hubo un error. Intenta más tarde.");
+      }
+    };
+    
+    const handleGuardarContrasena = async () => {
     if (!contrasenaActual || !nuevaContrasena || !confirmarContrasena) {
       alert("Completa todos los campos");
       return;
@@ -19,23 +50,10 @@ export const Configuracion = ({mostrarConfig, setMostrarConfig}) => {
     }
 
     try {
-      const matricula = localStorage.getItem("matricula"); // o donde estés guardando la sesión
+      const matricula = localStorage.getItem("matricula");
+      const { ok, data } = await actualizarContrasena({ matricula, contrasenaActual, nuevaContrasena });
 
-      const res = await fetch("http://localhost:3000/cambiar-contrasena", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          matricula,
-          contrasenaActual,
-          nuevaContrasena,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
+      if (ok) {
         alert("Contraseña actualizada con éxito");
         setContrasenaActual("");
         setNuevaContrasena("");
@@ -44,7 +62,7 @@ export const Configuracion = ({mostrarConfig, setMostrarConfig}) => {
         alert(data.mensaje || "Error al cambiar la contraseña");
       }
     } catch (error) {
-      console.error("Error al cambiar contraseña:", error);
+      console.error("Error:", error);
       alert("Hubo un error. Intenta más tarde.");
     }
   };
@@ -83,18 +101,14 @@ export const Configuracion = ({mostrarConfig, setMostrarConfig}) => {
                 <h3 className="text-lg font-medium mb-4">Cambiar correo electrónico</h3>
                 <div className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium mb-1">Correo actual</label>
-                    <input type="email" className="w-full p-2 border rounded" placeholder="usuario@ejemplo.com" readOnly />
-                </div>
-                <div>
                     <label className="block text-sm font-medium mb-1">Nuevo correo</label>
-                    <input type="email" className="w-full p-2 border rounded" placeholder="nuevo@ejemplo.com" />
+                    <input type="email" className="w-full p-2 border rounded" placeholder="nuevo@ejemplo.com" value={nuevoCorreo} onChange={(e) => setNuevoCorreo(e.target.value)}/>
                 </div>
                 <div>
                     <label className="block text-sm font-medium mb-1">Contraseña</label>
-                    <input type="password" className="w-full p-2 border rounded" placeholder="••••••••" />
+                    <input type="password" className="w-full p-2 border rounded" value={contrasena} onChange={(e) => setContrasena(e.target.value)} />
                 </div>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer">Actualizar correo</button>
+                <button className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"  onClick={handleGuardarCorreo}>Actualizar correo</button>
                 </div>
             </div>
             );
