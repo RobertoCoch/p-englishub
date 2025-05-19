@@ -6,6 +6,10 @@ import { Avisos } from '../components/Home/Avisos'
 import { LoginA } from '../components/Login/LoginA'
 import { ProtectedRoute } from './ProtectedRoute'
 import { Layout } from '../components/Layout/Layout'
+import { LayoutMaestro } from '../components/Layout/Maestro/LayoutMaestro'
+import { Grupos } from '../components/Home/Maestro/Grupos'
+import { TareasM } from '../components/Home/Maestro/TareasM'
+import { AvisosM } from '../components/Home/Maestro/AvisosM'
 
 export const AppRouter = () => {
   return (
@@ -28,7 +32,18 @@ export const AppRouter = () => {
           <Route path="avisos" element={<Avisos />} />
         </Route>
 
-
+        <Route
+        path="/maestro"
+        element={
+          <ProtectedRoute allowedType="maestro">
+            <LayoutMaestro />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Grupos/>} />
+        <Route path='tareasm' element={<TareasM/>}/>
+        <Route path='avisosm' element={<AvisosM/>}/>
+        </Route>
        
     </Routes>
   )

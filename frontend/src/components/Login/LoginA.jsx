@@ -27,7 +27,20 @@ export const LoginA = () => {
         if (result.token) {
             localStorage.setItem('token', result.token);
             localStorage.setItem('matricula', matricula);
-             window.location.href = '/';
+            localStorage.setItem('tipo', result.tipo)
+            switch (result.tipo) {
+              case 'alumno':
+                window.location.href = '/'; // o '/inicio-alumno' si lo manejas así
+                break;
+              case 'maestro':
+                window.location.href = '/maestro';
+                break;
+              case 'admin':
+                window.location.href = '/admin';
+                break;
+              default:
+                setErrorMessage('Tipo de usuario desconocido');
+            }
         }else {
           setErrorMessage('Usuario o contraseña incorrectos');
         }
@@ -47,7 +60,7 @@ export const LoginA = () => {
       </div>
       <div className='container-form'>
           <form className='form-style'>
-              <h2 className='text-alumno'>Alumno</h2>
+              <h2 className='text-alumno'>Inicio</h2>
               {errorMessage && (
                 <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
                 {errorMessage}
@@ -55,11 +68,6 @@ export const LoginA = () => {
               )}
               <input placeholder='Matricula *' onChange={(event) => {setMatricula(event.target.value)}} className='input-form' type="text" />
               <input placeholder='Contraseña *' onChange={(event) => {setContraseña(event.target.value)}} className='input-form' type="password" />
-              <div className='10/10 flex flex-row gap-5'>
-                <button className=' text-white w-20 h-10 bg-[#0B1138] rounded-lg hover:bg-[#3E55DA]'>Alumno</button>
-                <button className=' text-white w-20 h-10 bg-[#0B1138] rounded-lg hover:bg-[#3E55DA]'>Maestro</button>
-                <button className=' text-white w-20 h-10 bg-[#0B1138] rounded-lg hover:bg-[#3E55DA]'>Admin</button>
-              </div>
               <button onClick={handdleLogin} className='button-form'>Iniciar Sesión</button>
           </form>      
       </div>

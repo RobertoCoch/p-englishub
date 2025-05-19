@@ -1,18 +1,6 @@
 import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 
-{/* 
-const studentData = {
-  nombre: "José Roberto Contreras Chablé",
-  matricula: "22E30381",
-  edad: 20,
-  semestre: "6to Semestre",
-  carrera: "Ingeniería en Informatica",
-  correo: "contreraschableroberto@gmail.com",
-  foto: "https://i.pravatar.cc/150?img=33" // Usamos una imagen de perfil de ejemplo
-};
-*/}
-
 const foto = "https://cdn-icons-png.flaticon.com/512/9706/9706583.png"
 
 export const PerfilModal = ({ isOpen, setIsOpen }) => {
